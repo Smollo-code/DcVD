@@ -6,7 +6,7 @@ URL_REGEX='/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1
 
 function getMessages() {
   curl -s -H "Authorization: Bot $BOT_TOKEN" \
-    "https://discord.com/api/v10/channels/$CHANNEL_ID/messages" | jq -c '[.[] | {id, content}]'
+    "https://discord.com/api/v10/channels/$CHANNEL_ID/messages" | tee response.json
 }
 
 function matchesUrl() {
