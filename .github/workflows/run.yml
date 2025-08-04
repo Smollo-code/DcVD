@@ -17,10 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run Script
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y curl jq
+
+      - name: Run Script
+        run: |
           chmod +x ./getLinks.sh
           ./getLinks.sh
 
