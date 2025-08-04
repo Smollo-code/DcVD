@@ -19,6 +19,8 @@ jobs:
 
       - name: Run Script
         run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq
           chmod +x ./getLinks.sh
           ./getLinks.sh
 
