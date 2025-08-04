@@ -1,0 +1,24 @@
+name: run.yml
+on:
+  #schedule:
+  #  - cron: '*/1 * * * *'
+  workflow_dispatch:
+
+
+jobs:
+  generateImages:
+    runs-on: ubuntu-latest
+
+    env:
+      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Script
+        run: |
+          chmod +x ./getLinks.sh
+          ./getLinks.sh
+
