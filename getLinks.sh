@@ -4,12 +4,9 @@ set -e
 
 #source .env
 
-echo $CHANNEL_ID
-
 URL_REGEX='/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/'
 
 function getMessages() {
-  echo 'startet'
   curl -s -H "Authorization: Bot $BOT_TOKEN" \
     "https://discord.com/api/v10/channels/$CHANNEL_ID/messages"
 }
@@ -40,10 +37,7 @@ function deleteMessage() {
     -H "Authorization: Bot $BOT_TOKEN"
 }
 
-echo "pls"
-echo $(getMessages)
 getMessages | jq -c '.[]' | while read -r item; do
-  echo "hallo1"
   id=$(jq -r '.id' <<< "$item")
   content=$(jq -r '.content' <<< "$item")
   if ! matchesUrl $content; then
