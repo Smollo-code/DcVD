@@ -8,7 +8,6 @@ function getMessages() {
   echo 'startet'
   curl -s -H "Authorization: Bot $BOT_TOKEN" \
     "https://discord.com/api/v10/channels/$CHANNEL_ID/messages"
-  echo "HTTP-Status: $response"
   }
 
 function matchesUrl() {
