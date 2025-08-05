@@ -5,10 +5,10 @@ source .env
 URL_REGEX='/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/'
 
 function getMessages() {
+  echo 'startet'
   curl -s -H -w "%{http_code}" -o response.json "Authorization: Bot $BOT_TOKEN" \
     "https://discord.com/api/v10/channels/$CHANNEL_ID/messages"
   echo "HTTP-Status: $response"
-  cat response.json
   }
 
 function matchesUrl() {
