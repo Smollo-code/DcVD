@@ -8,7 +8,7 @@ function getMessages() {
   echo 'startet'
   curl -s -H "Authorization: Bot $BOT_TOKEN" \
     "https://discord.com/api/v10/channels/$CHANNEL_ID/messages"
-  }
+}
 
 function matchesUrl() {
   if [[ "$1" =~ ^https?:// ]]; then # better regex needed
@@ -37,6 +37,7 @@ function deleteMessage() {
 }
 
 getMessages | jq -c '.[]' | while read -r item; do
+  echo "hallo1"
   id=$(jq -r '.id' <<< "$item")
   content=$(jq -r '.content' <<< "$item")
   if ! matchesUrl $content; then
