@@ -37,6 +37,7 @@ function deleteMessage() {
 }
 
 echo "pls"
+echo getMessages
 getMessages | jq -c '.[]' | while read -r item; do
   echo "hallo1"
   id=$(jq -r '.id' <<< "$item")
