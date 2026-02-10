@@ -12,10 +12,27 @@ function getMessages() {
 }
 
 function matchesUrl() {
-  if [[ "$1" =~ ^https?:// ]]; then # better regex needed
-    return 0
+  if [[ ! "$1" =~ ^https?:// ]]; then
+    return 1
   fi
-  return 1
+
+  local domain
+  domain=$(echo "$1" | awk -F/ '{print $3}')
+
+  case "$domain" in
+    instagram.com|www.instagram.com|
+    tiktok.com|www.tiktok.com|
+    youtube.com|www.youtube.com|
+    m.youtube.com|
+    youtu.be|
+    twitter.com|www.twitter.com|
+    x.com|www.x.com)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
 }
 
 function createVideoFromLink() {
